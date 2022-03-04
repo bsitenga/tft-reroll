@@ -42,3 +42,34 @@ body {
     max-width: 90vw;
   }
 }
+
+.gold-counter {
+  font-size: 1.5em;
+}
+
+.gold-button {
+  background: #d13639;
+  color: #d0b76e;
+  font-weight: 700;
+  border: 0;
+  border-radius: 0px;
+  height: 38px;
+  width: 30px;
+}
+
+.gold-number {
+  background: #d13639;
+  width: 30px;
+  color: #d0b76e;
+  border: none;
+  text-align: center;
+}
+
+.gold-number:focus {
+  border: none;
+  outline: none;
+}
+
+h4 {
+  margin-top: 10px;
+}
