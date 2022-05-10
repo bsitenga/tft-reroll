@@ -109,3 +109,7 @@ h4 {
 .nav-tabs .nav-link.active:hover {
   background-color:#bc1525;
 }
+
+.cost-counter {
+  margin-bottom: 12px;
+}

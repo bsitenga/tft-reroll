@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import riot_logo from "./assets/riot_logo.png";
+import TFTReroll_logo from "./assets/TFTReroll_logo.png";
 import galio_portrait from "./assets/galio_portrait.png";
 import jayce_portrait from "./assets/jayce_portrait.png";
 import jinx_portrait from "./assets/jinx_portrait.png";
@@ -72,13 +72,41 @@ function App() {
     }
   };
 
+  const validateCost = (e, cost) => {
+    if (e.target.value.indexOf(" ") === -1) {
+      let userInput = Number(e.target.value);
+      if (Number.isInteger(userInput) && e.target.value[1]) {
+        let tempUnitCount = { ...unitCount };
+        console.log(tempUnitCount);
+        tempUnitCount[cost] = Number(e.target.value[1]);
+        setUnitCount(tempUnitCount);
+      }
+    }
+  };
+
+  const addCost = (cost) => {
+    let tempUnitCount = { ...unitCount };
+    if (tempUnitCount[cost] < 9) {
+      tempUnitCount[cost] += 1;
+      setUnitCount(tempUnitCount);
+    }
+  };
+
+  const subtractCost = (cost) => {
+    let tempUnitCount = { ...unitCount };
+    if (tempUnitCount[cost] > 0) {
+      tempUnitCount[cost] -= 1;
+      setUnitCount(tempUnitCount);
+    }
+  };
+
   return (
     <div>
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/">
             <img
-              src={riot_logo}
+              src={TFTReroll_logo}
               width="30"
               height="30"
               className="d-inline-block align-top"
@@ -136,16 +164,132 @@ function App() {
               </Col>
             </Row>
             <Tabs defaultActiveKey="simple" id="uncontrolled-tab-example">
-              <Tab eventKey="simple" title="Simple"> 
-                hello
+              <Tab eventKey="simple" title="SIMPLE">
+                <Row>
+                  <Col>
+                    <h4>SELECT UNIT(S)</h4>
+                    <Row>
+                      <Col xs={6} md={4} xl={2}>
+                        <h5>1-Cost</h5>
+                        <div className="gold-counter cost-counter">
+                          <button
+                            className="gold-button"
+                            onClick={() => subtractCost("oneCost")}
+                          >
+                            -
+                          </button>
+                          <input
+                            className="gold-number"
+                            value={unitCount["oneCost"]}
+                            onChange={(e) => validateCost(e, "oneCost")}
+                          ></input>
+                          <button
+                            className="gold-button"
+                            onClick={() => addCost("oneCost")}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </Col>
+                      <Col xs={6} md={4} xl={2}>
+                        <h5>2-Cost</h5>
+                        <div className="gold-counter cost-counter">
+                          <button
+                            className="gold-button"
+                            onClick={() => subtractCost("twoCost")}
+                          >
+                            -
+                          </button>
+                          <input
+                            className="gold-number"
+                            value={unitCount["twoCost"]}
+                            onChange={(e) => validateCost(e, "twoCost")}
+                          ></input>
+                          <button
+                            className="gold-button"
+                            onClick={() => addCost("twoCost")}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </Col>
+                      <Col xs={6} md={4} xl={2}>
+                        <h5>3-Cost</h5>
+                        <div className="gold-counter cost-counter">
+                          <button
+                            className="gold-button"
+                            onClick={() => subtractCost("threeCost")}
+                          >
+                            -
+                          </button>
+                          <input
+                            className="gold-number"
+                            value={unitCount["threeCost"]}
+                            onChange={(e) => validateCost(e, "threeCost")}
+                          ></input>
+                          <button
+                            className="gold-button"
+                            onClick={() => addCost("threeCost")}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </Col>
+                      <Col xs={6} md={4} xl={2}>
+                        <h5>4-Cost</h5>
+                        <div className="gold-counter cost-counter">
+                          <button
+                            className="gold-button"
+                            onClick={() => subtractCost("fourCost")}
+                          >
+                            -
+                          </button>
+                          <input
+                            className="gold-number"
+                            value={unitCount["fourCost"]}
+                            onChange={(e) => validateCost(e, "fourCost")}
+                          ></input>
+                          <button
+                            className="gold-button"
+                            onClick={() => addCost("fourCost")}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </Col>
+                      <Col xs={6} md={4} xl={2}>
+                        <h5>5-Cost</h5>
+                        <div className="gold-counter cost-counter">
+                          <button
+                            className="gold-button"
+                            onClick={() => subtractCost("fiveCost")}
+                          >
+                            -
+                          </button>
+                          <input
+                            className="gold-number"
+                            value={unitCount["fiveCost"]}
+                            onChange={(e) => validateCost(e, "fiveCost")}
+                          ></input>
+                          <button
+                            className="gold-button"
+                            onClick={() => addCost("fiveCost")}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
               </Tab>
-              <Tab eventKey="champion" title="Champion Select">
+              <Tab eventKey="champion" title="CHAMPION SELECT">
                 <Row className="champ-select">
                   <Col>
                     <h4>SELECT UNIT(S)</h4>
                     <Accordion alwaysOpen>
                       <Accordion.Item eventKey="0">
-                        <Accordion.Header>5- Cost Units</Accordion.Header>
+                        <Accordion.Header>5-Cost Units</Accordion.Header>
                         <Accordion.Body>
                           <Row>
                             <Col xs={6} sm={3}>
