@@ -2,6 +2,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  background-color: #ededed;
 }
 
 #logo-text {
@@ -28,7 +29,7 @@ body {
   }
 
   .navbar-dark .navbar-nav .nav-link:hover {
-    color: #d13639;
+    color: #dc3545;
   }
 }
 
@@ -48,8 +49,8 @@ body {
 }
 
 .gold-button {
-  background: #d13639;
-  color: #d0b76e;
+  background: #dc3545;
+  color: #f0d78e;
   font-weight: 700;
   border: 0;
   border-radius: 0px;
@@ -57,12 +58,20 @@ body {
   width: 28px;
 }
 
+.gold-button:hover {
+  color: #eee;
+}
+
 .gold-number {
-  background: #d13639;
+  background: #dc3545;
   width: 30px;
-  color: #d0b76e;
+  color: #f0d78e;
   border: none;
   text-align: center;
+}
+
+.gold-number:hover {
+  color: #eee;
 }
 
 .gold-number:focus {
@@ -72,4 +81,31 @@ body {
 
 h4 {
   margin-top: 10px;
+}
+
+.intro-select {
+  margin-bottom: 20px;
+}
+
+.nav-tabs {
+  border-bottom-color: #dc3545;
+} 
+
+.nav-tabs .nav-link.active {
+  background-color: #dc3545;
+  color: white;
+}
+
+.nav-tabs .nav-link {
+  color: #dc3545;
+  border: black
+}
+
+.nav-tabs .nav-link:hover {
+  background-color: #ddd;
+  border-bottom: 1px solid #dc3545;
+}
+
+.nav-tabs .nav-link.active:hover {
+  background-color:#bc1525;
 }

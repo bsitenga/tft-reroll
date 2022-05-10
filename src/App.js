@@ -21,12 +21,19 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
 
 function App() {
   const [radioValue, setRadioValue] = useState("1");
   const [gold, setGold] = useState(50);
-  const [akaliCheck, setAkaliCheck] = useState(false);
-  const [fiveCostCount, setFiveCostCount] = useState(0);
+  const [unitCount, setUnitCount] = useState({
+    oneCost: 0,
+    twoCost: 0,
+    threeCost: 0,
+    fourCost: 0,
+    fiveCost: 0,
+  });
   const [checked, setChecked] = useState(false);
 
   const radios = [
@@ -76,7 +83,7 @@ function App() {
               height="30"
               className="d-inline-block align-top"
             />{" "}
-            <span id="logo-text">TFREROLL</span>
+            <span id="logo-text">TFTREROLL</span>
           </Navbar.Brand>
           <Nav className="me-auto" id="nav-links">
             <Nav.Link href="/about">About</Nav.Link>
@@ -128,125 +135,168 @@ function App() {
                 </div>
               </Col>
             </Row>
-            <Row className="champ-select">
-              <Col>
-                <h4>SELECT UNIT(S)</h4>
-                <Accordion alwaysOpen>
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header>5- Cost Units</Accordion.Header>
-                    <Accordion.Body>
-                      <Row>
-                        <Col xs={6} sm={3}>
-                          <div>
-                            <Card style={{ width: "100%"}}>
-                              <Card.Img variant="top" src={galio_portrait} style={{aspectRatio: "3/2" }} />
-                              <Card.Body>
-                                <Card.Title>Galio</Card.Title>
-                                <Button variant="primary">Go</Button>
-                              </Card.Body>
-                            </Card>
-                          </div>
-                          <div>
-                            <Card style={{ width: "100%" }}>
-                              <Card.Img variant="top" src={silco_portrait} style={{aspectRatio: "3/2" }} />
-                              <Card.Body>
-                                <Card.Title>Silco</Card.Title>
-                                <Button variant="primary">Go</Button>
-                              </Card.Body>
-                            </Card>
-                          </div>
-                          <div>
-                            <Card style={{ width: "100%" }}>
-                              <Card.Img variant="top" src={zeri_portrait} style={{aspectRatio: "3/2" }} />
-                              <Card.Body>
-                                <Card.Title>Zeri</Card.Title>
-                                <Button variant="primary">Go</Button>
-                              </Card.Body>
-                            </Card>
-                          </div>
-                        </Col>
-                        <Col xs={6} sm={3}>
-                        <div>
-                            <Card style={{ width: "100%" }}>
-                              <Card.Img variant="top" src={jayce_portrait} style={{aspectRatio: "3/2" }} />
-                              <Card.Body>
-                                <Card.Title>Jayce</Card.Title>
-                                <Button variant="primary">Go</Button>
-                              </Card.Body>
-                            </Card>
-                          </div>
-                          <div>
-                            <Card style={{ width: "100%" }}>
-                              <Card.Img variant="top" src={tahm_kench_portrait} style={{aspectRatio: "3/2" }} />
-                              <Card.Body>
-                                <Card.Title>Tahm Kench</Card.Title>
-                                <Button variant="primary">Go</Button>
-                              </Card.Body>
-                            </Card>
-                          </div>
-                        </Col>
-                        <Col xs={6} sm={3}>
-                        <div>
-                            <Card style={{ width: "100%" }}>
-                              <Card.Img variant="top" src={jinx_portrait} style={{aspectRatio: "3/2" }} />
-                              <Card.Body>
-                                <Card.Title>Jinx</Card.Title>
-                                <Button variant="primary">Go</Button>
-                              </Card.Body>
-                            </Card>
-                          </div>
-                          <div>
-                            <Card style={{ width: "100%" }}>
-                              <Card.Img variant="top" src={veigar_portrait} style={{aspectRatio: "3/2" }} />
-                              <Card.Body>
-                                <Card.Title>Veigar</Card.Title>
-                                <Button variant="primary">Go</Button>
-                              </Card.Body>
-                            </Card>
-                          </div>
-                        </Col>
-                        <Col xs={6} sm={3}>
-                        <div>
-                            <Card style={{ width: "100%",}}>
-                              <Card.Img variant="top" src={kaisa_portrait} style={{aspectRatio: "3/2" }} />
-                              <Card.Body>
-                                <Card.Title>Kai'Sa</Card.Title>
-                                <Button variant="primary">Go</Button>
-                              </Card.Body>
-                            </Card>
-                          </div>
-                          <div>
-                            <Card style={{ width: "100%",}}>
-                              <Card.Img variant="top" src={viktor_portrait} style={{aspectRatio: "3/2" }} />
-                              <Card.Body>
-                                <Card.Title>Viktor</Card.Title>
-                                <Button variant="primary">Go</Button>
-                              </Card.Body>
-                            </Card>
-                          </div>
-                        </Col>
-                      </Row>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                  <Accordion.Item eventKey="1">
-                    <Accordion.Header>4-Cost Units</Accordion.Header>
-                    <Accordion.Body></Accordion.Body>
-                  </Accordion.Item>
-                  <Accordion.Item eventKey="2">
-                    <Accordion.Header>3-Cost Units</Accordion.Header>
-                    <Accordion.Body></Accordion.Body>
-                  </Accordion.Item>
-                  <Accordion.Item eventKey="3">
-                    <Accordion.Header>2-Cost Units</Accordion.Header>
-                    <Accordion.Body></Accordion.Body>
-                  </Accordion.Item>
-                  <Accordion.Item eventKey="4">
-                    <Accordion.Header>1-Cost Units</Accordion.Header>
-                    <Accordion.Body></Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </Col>
-            </Row>
+            <Tabs defaultActiveKey="simple" id="uncontrolled-tab-example">
+              <Tab eventKey="simple" title="Simple"> 
+                hello
+              </Tab>
+              <Tab eventKey="champion" title="Champion Select">
+                <Row className="champ-select">
+                  <Col>
+                    <h4>SELECT UNIT(S)</h4>
+                    <Accordion alwaysOpen>
+                      <Accordion.Item eventKey="0">
+                        <Accordion.Header>5- Cost Units</Accordion.Header>
+                        <Accordion.Body>
+                          <Row>
+                            <Col xs={6} sm={3}>
+                              <div>
+                                <Card style={{ width: "100%" }}>
+                                  <Card.Img
+                                    variant="top"
+                                    src={galio_portrait}
+                                    style={{ aspectRatio: "3/2" }}
+                                  />
+                                  <Card.Body>
+                                    <Card.Title>Galio</Card.Title>
+                                    <Button variant="primary">Go</Button>
+                                  </Card.Body>
+                                </Card>
+                              </div>
+                              <div>
+                                <Card style={{ width: "100%" }}>
+                                  <Card.Img
+                                    variant="top"
+                                    src={silco_portrait}
+                                    style={{ aspectRatio: "3/2" }}
+                                  />
+                                  <Card.Body>
+                                    <Card.Title>Silco</Card.Title>
+                                    <Button variant="primary">Go</Button>
+                                  </Card.Body>
+                                </Card>
+                              </div>
+                              <div>
+                                <Card style={{ width: "100%" }}>
+                                  <Card.Img
+                                    variant="top"
+                                    src={zeri_portrait}
+                                    style={{ aspectRatio: "3/2" }}
+                                  />
+                                  <Card.Body>
+                                    <Card.Title>Zeri</Card.Title>
+                                    <Button variant="primary">Go</Button>
+                                  </Card.Body>
+                                </Card>
+                              </div>
+                            </Col>
+                            <Col xs={6} sm={3}>
+                              <div>
+                                <Card style={{ width: "100%" }}>
+                                  <Card.Img
+                                    variant="top"
+                                    src={jayce_portrait}
+                                    style={{ aspectRatio: "3/2" }}
+                                  />
+                                  <Card.Body>
+                                    <Card.Title>Jayce</Card.Title>
+                                    <Button variant="primary">Go</Button>
+                                  </Card.Body>
+                                </Card>
+                              </div>
+                              <div>
+                                <Card style={{ width: "100%" }}>
+                                  <Card.Img
+                                    variant="top"
+                                    src={tahm_kench_portrait}
+                                    style={{ aspectRatio: "3/2" }}
+                                  />
+                                  <Card.Body>
+                                    <Card.Title>Tahm Kench</Card.Title>
+                                    <Button variant="primary">Go</Button>
+                                  </Card.Body>
+                                </Card>
+                              </div>
+                            </Col>
+                            <Col xs={6} sm={3}>
+                              <div>
+                                <Card style={{ width: "100%" }}>
+                                  <Card.Img
+                                    variant="top"
+                                    src={jinx_portrait}
+                                    style={{ aspectRatio: "3/2" }}
+                                  />
+                                  <Card.Body>
+                                    <Card.Title>Jinx</Card.Title>
+                                    <Button variant="primary">Go</Button>
+                                  </Card.Body>
+                                </Card>
+                              </div>
+                              <div>
+                                <Card style={{ width: "100%" }}>
+                                  <Card.Img
+                                    variant="top"
+                                    src={veigar_portrait}
+                                    style={{ aspectRatio: "3/2" }}
+                                  />
+                                  <Card.Body>
+                                    <Card.Title>Veigar</Card.Title>
+                                    <Button variant="primary">Go</Button>
+                                  </Card.Body>
+                                </Card>
+                              </div>
+                            </Col>
+                            <Col xs={6} sm={3}>
+                              <div>
+                                <Card style={{ width: "100%" }}>
+                                  <Card.Img
+                                    variant="top"
+                                    src={kaisa_portrait}
+                                    style={{ aspectRatio: "3/2" }}
+                                  />
+                                  <Card.Body>
+                                    <Card.Title>Kai'Sa</Card.Title>
+                                    <Button variant="primary">Go</Button>
+                                  </Card.Body>
+                                </Card>
+                              </div>
+                              <div>
+                                <Card style={{ width: "100%" }}>
+                                  <Card.Img
+                                    variant="top"
+                                    src={viktor_portrait}
+                                    style={{ aspectRatio: "3/2" }}
+                                  />
+                                  <Card.Body>
+                                    <Card.Title>Viktor</Card.Title>
+                                    <Button variant="primary">Go</Button>
+                                  </Card.Body>
+                                </Card>
+                              </div>
+                            </Col>
+                          </Row>
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="1">
+                        <Accordion.Header>4-Cost Units</Accordion.Header>
+                        <Accordion.Body></Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="2">
+                        <Accordion.Header>3-Cost Units</Accordion.Header>
+                        <Accordion.Body></Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="3">
+                        <Accordion.Header>2-Cost Units</Accordion.Header>
+                        <Accordion.Body></Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="4">
+                        <Accordion.Header>1-Cost Units</Accordion.Header>
+                        <Accordion.Body></Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
+                  </Col>
+                </Row>
+              </Tab>
+            </Tabs>
           </Col>
           <Col lg={5}>
             <h4>REROLL STATISTICS</h4>
